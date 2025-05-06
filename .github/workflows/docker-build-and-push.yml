@@ -27,7 +27,7 @@ jobs:
           context: ./17.0
           file: ./17.0/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}/17.0:latest
+          tags: ghcr.io/${{ github.repository | toLowerCase }}/17.0:latest
 
       - name: Build and push Docker image for 18.0
         uses: docker/build-push-action@v4
@@ -35,4 +35,4 @@ jobs:
           context: ./18.0
           file: ./18.0/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}/18.0:latest
+          tags: ghcr.io/${{ github.repository | toLowerCase }}/18.0:latest
