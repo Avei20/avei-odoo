@@ -21,13 +21,17 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Set lowercase repository name
+        id: repo_name
+        run: echo "repo_lower=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Build and push Docker image for 17.0
         uses: docker/build-push-action@v4
         with:
           context: ./17.0
           file: ./17.0/Dockerfile.custom
           push: true
-          tags: ghcr.io/${{ github.repository | toLowerCase }}/17.0:latest
+          tags: ghcr.io/${{ env.repo_lower }}/17.0:latest
 
       - name: Build and push Docker image for 18.0
         uses: docker/build-push-action@v4
@@ -35,4 +39,4 @@ jobs:
           context: ./18.0
           file: ./18.0/Dockerfile.custom
           push: true
-          tags: ghcr.io/${{ github.repository | toLowerCase }}/18.0:latest
+          tags: ghcr.io/${{ env.repo_lower }}/18.0:latest
