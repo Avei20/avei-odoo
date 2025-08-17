@@ -40,7 +40,7 @@ DB_EXISTS=$(PGPASSWORD=$PASSWORD psql -h $HOST -p $DB_PORT -U $USER -lqt | cut -
 
 if [ "$DB_EXISTS" = "no" ]; then
     echo "Database does not exist, creating and initializing it..."
-    createdb -h $HOST -p $DB_PORT -U $USER $DB_NAMEl
+    createdb -h $HOST -p $DB_PORT -U $USER $DB_NAME
     echo "Database initialization complete"
 fi
 
